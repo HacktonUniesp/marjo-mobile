@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marjosports/src/layers/home/ui/pages/admin_home_page.dart';
+import 'package:marjosports/src/layers/login/ui/pages/register_page.dart';
 import 'package:marjosports/src/layers/login/ui/widgets/registration_form.dart';
 import 'package:marjosports/src/theme/theme_app.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const AdminHomePage()),
+                              MaterialPageRoute(builder: (context) => const RegisterPage()),
                             );
                           },
                           child: const Text('Cadastrar', style: TextStyle(color: Colors.white)),

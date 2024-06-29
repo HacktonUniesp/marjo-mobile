@@ -28,72 +28,70 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Scaffold(
-          body: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background.jpg'),
-                fit: BoxFit.cover,
-              ),
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.jpg'),
+              fit: BoxFit.cover,
             ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'NOME EQUIPE',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'NOME EQUIPE',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(height: 20),
-                      RegistrationFormPerson(
-                        styleMask: MaskTextInputFormatter(mask: ''),
-                        keyboardType: TextInputType.text,
-                        labelText: 'Nome',
-                        controller: _nomeController,
+                    ),
+                    const SizedBox(height: 20),
+                    RegistrationFormPerson(
+                      styleMask: MaskTextInputFormatter(mask: ''),
+                      keyboardType: TextInputType.text,
+                      labelText: 'Nome',
+                      controller: _nomeController,
+                    ),
+                    const SizedBox(height: 10),
+                    RegistrationFormPerson(
+                      styleMask: MaskTextInputFormatter(mask: '###.###.###-##'),
+                      keyboardType: TextInputType.number,
+                      labelText: 'CPF',
+                      controller: _cpfController,
+                    ),
+                    const SizedBox(height: 10),
+                    RegistrationFormPerson(
+                      styleMask: MaskTextInputFormatter(mask: ''),
+                      keyboardType: TextInputType.text,
+                      labelText: 'Senha',
+                      controller: _senhaController,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ThemeApp.redColor,
                       ),
-                      const SizedBox(height: 10),
-                      RegistrationFormPerson(
-                        styleMask: MaskTextInputFormatter(mask: '###.###.###-##'),
-                        keyboardType: TextInputType.number,
-                        labelText: 'CPF',
-                        controller: _cpfController,
-                      ),
-                      const SizedBox(height: 10),
-                      RegistrationFormPerson(
-                        styleMask: MaskTextInputFormatter(mask: ''),
-                        keyboardType: TextInputType.text,
-                        labelText: 'Senha',
-                        controller: _senhaController,
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: ThemeApp.redColor,
-                        ),
-                        onPressed: () {
-                          // if (_formKey.currentState?.validate() ?? false) {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(content: Text('Processando dados')),
-                          //   );
-                          // }
-                                                    Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const AdminHomePage()),
-                              );
-                        },
-                        child: const Text('Cadastrar', style: TextStyle(color: Colors.white)),
-                      ),
-                    ],
-                  ),
+                      onPressed: () {
+                        // if (_formKey.currentState?.validate() ?? false) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(content: Text('Processando dados')),
+                        //   );
+                        // }
+                                                  Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const AdminHomePage()),
+                            );
+                      },
+                      child: const Text('Cadastrar', style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
                 ),
               ),
             ),
