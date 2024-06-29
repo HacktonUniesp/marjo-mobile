@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marjosports/src/layers/home/ui/pages/user_home_page.dart';
+import 'package:marjosports/src/layers/home/ui/pages/admin_home_page.dart';
 import 'package:marjosports/src/layers/login/ui/widgets/registration_form.dart';
 import 'package:marjosports/src/theme/theme_app.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -87,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           // }
                                                     Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const UserHomePage()),
+                                MaterialPageRoute(builder: (context) => const AdminHomePage()),
                               );
                         },
                         child: const Text('Cadastrar', style: TextStyle(color: Colors.white)),
