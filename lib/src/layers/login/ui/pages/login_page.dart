@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marjosports/src/layers/login/ui/widgets/registration_button.dart';
+import 'package:marjosports/src/layers/home/ui/pages/user_home_page.dart';
 import 'package:marjosports/src/layers/login/ui/widgets/registration_form.dart';
 import 'package:marjosports/src/theme/theme_app.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -11,12 +11,18 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final _formKey = GlobalKey<FormState>();
-final _nomeController = TextEditingController();
-final _cpfController = TextEditingController();
-final _senhaController = TextEditingController();
-
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _cpfController = TextEditingController();
+  final _senhaController = TextEditingController();
+
+  @override
+  void dispose() {
+    _cpfController.dispose();
+    _senhaController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,13 +52,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 20),
                     RegistrationFormPerson(
-                      styleMask: MaskTextInputFormatter(mask: ''),
-                      keyboardType: TextInputType.text,
-                      labelText: 'Nome',
-                      controller: _nomeController,
-                    ),
-                    const SizedBox(height: 10),
-                    RegistrationFormPerson(
                       styleMask: MaskTextInputFormatter(mask: '###.###.###-##'),
                       keyboardType: TextInputType.number,
                       labelText: 'CPF',
@@ -67,14 +66,36 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 20),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        RegistrationButton(label: 'Entrar', labelColor: Colors.black, backgroundColor: Colors.white,),
-                        SizedBox(width: 20),
-                        RegistrationButton(label: 'Cadastrar', labelColor: Colors.white, backgroundColor: ThemeApp.redColor,),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState?.validate() ?? false) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Processando dados')),
+                              );
+                            }
+                          },
+                          child: const Text('Entrar', style: TextStyle(color: Colors.black)),
+                        ),
+                        const SizedBox(width: 20),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ThemeApp.redColor,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const UserHomePage()),
+                            );
+                          },
+                          child: const Text('Cadastrar', style: TextStyle(color: Colors.white)),
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -83,13 +104,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _nomeController.dispose();
-    _cpfController.dispose();
-    _senhaController.dispose();
-    super.dispose();
   }
 }
