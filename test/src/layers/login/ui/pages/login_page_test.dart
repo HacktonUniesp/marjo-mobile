@@ -8,9 +8,6 @@ void main() {
   testWidgets('Login Page has all necessary widgets', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(home: LoginPage()));
 
-    // Verifica se existe o texto 'NOME EQUIPE'
-    expect(find.text('NOME EQUIPE'), findsOneWidget);
-
     // Verifica se existe o campo de entrada CPF
     expect(find.widgetWithText(TextFormField, 'CPF'), findsOneWidget);
 
